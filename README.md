@@ -1,5 +1,5 @@
 # Introduction 
-Creating an ICS simulation environment for exploration and learning.  
+Files and templates to create an automated ICS simulation environment for exploration and learning.  
 This environment is based on the following sources:  
 + https://openplcproject.github.io/
 + https://dial.uclouvain.be/memoire/ucl/fr/object/thesis%3A14706/datastream/PDF_01/view  
@@ -7,6 +7,8 @@ This environment is based on the following sources:
 + Pascal Ackerman, Industrial Cybersecurity - Second Edition - https://www.packtpub.com/product/industrial-cybersecurity-second-edition/9781800202092  
 
 Tools onclude Mininet, openPLC, PySCADA, ScadaBR, and more
+
+The project aims to leverage the Azure pipeline features for automated deployment
   
 
 # Steps
