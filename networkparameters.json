@@ -1,0 +1,144 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "extendedLocation": {
+            "value": {}
+        },
+        "virtualNetworkName": {
+            "value": "ICS-network"
+        },
+        "tagsByResource": {
+            "value": {
+                "Microsoft.Network/virtualNetworks": {},
+                "Microsoft.Network/ddosProtectionPlans": {},
+                "Microsoft.Network/publicIPAddresses": {},
+                "Microsoft.Network/azureFirewalls": {},
+                "Microsoft.Network/bastionHosts": {},
+                "Microsoft.Network/natGateways": {},
+                "Microsoft.Network/publicIPPrefixes": {},
+                "Microsoft.Network/networkSecurityGroups": {}
+            }
+        },
+        "addressPrefixes": {
+            "value": [
+                "10.0.0.0/16"
+            ]
+        },
+        "natGatewaysWithNewPublicIpAddress": {
+            "value": []
+        },
+        "natGatewaysWithoutNewPublicIpAddress": {
+            "value": []
+        },
+        "natGatewayPublicIpAddressesNewNames": {
+            "value": []
+        },
+        "networkSecurityGroupsNew": {
+            "value": []
+        },
+        "subnets": {
+            "value": [
+                {
+                    "name": "AzureBastionSubnet",
+                    "properties": {
+                        "addressPrefixes": [
+                            "10.0.0.0/26"
+                        ]
+                    }
+                },
+                {
+                    "name": "L3Subnet",
+                    "properties": {
+                        "addressPrefixes": [
+                            "10.0.13.0/24"
+                        ]
+                    }
+                },
+                {
+                    "name": "L2Subnet",
+                    "properties": {
+                        "addressPrefixes": [
+                            "10.0.12.0/24"
+                        ]
+                    }
+                },
+                {
+                    "name": "L1Subnet",
+                    "properties": {
+                        "addressPrefixes": [
+                            "10.0.11.0/24"
+                        ]
+                    }
+                }
+            ]
+        },
+        "ddosProtectionPlanEnabled": {
+            "value": false
+        },
+        "firewallEnabled": {
+            "value": false
+        },
+        "firewallSkuTier": {
+            "value": "Standard"
+        },
+        "firewallPolicyIsNew": {},
+        "firewallPolicyId": {},
+        "firewallPolicyTier": {},
+        "firewallPublicIpAddressIsNew": {},
+        "firewallPublicIpAddressId": {},
+        "bastionEnabled": {
+            "value": false
+        },
+        "bastionPublicIpAddressIsNew": {},
+        "bastionPublicIPAddressId": {},
+        "bastionNsgIsNew": {},
+        "bastionNsgId": {},
+        "encryptionEnabled": {
+            "value": false
+        },
+        "encryptionEnforcement": {
+            "value": "AllowUnencrypted"
+        },
+        "addressSpaceStartingAddressChanged": {
+            "value": false
+        },
+        "addressSpaceAddressSizeChanged": {
+            "value": false
+        },
+        "ipv6Enabled": {
+            "value": false
+        },
+        "defaultSubnetChanged": {
+            "value": true
+        },
+        "subnetsInfo": {
+            "value": [
+                {
+                    "name": "Azure Bastion",
+                    "natGw": "none",
+                    "nsg": "none",
+                    "udr": "none"
+                },
+                {
+                    "name": "Default",
+                    "natGw": "none",
+                    "nsg": "none",
+                    "udr": "none"
+                },
+                {
+                    "name": "Default",
+                    "natGw": "none",
+                    "nsg": "none",
+                    "udr": "none"
+                }
+            ]
+        },
+        "subnetCount": {
+            "value": 4
+        }
+    }
+}

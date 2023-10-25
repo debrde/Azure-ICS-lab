@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "networkInterfaceName": {
+            "value": "vmPLC613"
+        },
+        "enableAcceleratedNetworking": {
+            "value": true
+        },
+        "networkSecurityGroupName": {
+            "value": "vmPLC-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": []
+        },
+        "subnetName": {
+            "value": "L1Subnet"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/d08e1fe2-703e-4cb1-8d53-3ba3d0623b6e/resourceGroups/PlayGround-Dennis/providers/Microsoft.Network/virtualNetworks/ICS-network"
+        },
+        "virtualMachineName": {
+            "value": "vmPLC"
+        },
+        "virtualMachineComputerName": {
+            "value": "vmPLC"
+        },
+        "virtualMachineRG": {
+            "value": "PlayGround-Dennis"
+        },
+        "osDiskType": {
+            "value": "Standard_LRS"
+        },
+        "osDiskDeleteOption": {
+            "value": "Delete"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "nicDeleteOption": {
+            "value": "Detach"
+        },
+        "adminUsername": {
+            "value": "azureuser"
+        },
+        "adminPassword": {
+            "value": null
+        }
+    }
+}

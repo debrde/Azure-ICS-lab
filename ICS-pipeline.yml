@@ -1,0 +1,88 @@
+# Starter pipeline
+# https://aka.ms/yaml
+
+parameters:
+  - name: vmplcpassword
+    displayName: vm password PLC
+    type: string
+  - name: vmscadapassword
+    displayName: vm password Scada server
+    type: string
+  - name: vmengpassword
+    displayName: vm password ENG workstation
+    type: string
+
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+
+    echo Deploying ICS simulation environment!
+    pwd
+    echo Refer to ReadMe for information.
+  displayName: 'Run a multi-line script'
+
+# Deploy network
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'SC-PlayGround-Dennis'
+    subscriptionId: 'd08e1fe2-703e-4cb1-8d53-3ba3d0623b6e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'PlayGround-Dennis'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: 'ICS/networktemplate.json'
+    csmParametersFile: 'ICS/networkparameters.json'
+    deploymentMode: 'Incremental'
+
+# Deploy VM PLC
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'SC-PlayGround-Dennis'
+    subscriptionId: 'd08e1fe2-703e-4cb1-8d53-3ba3d0623b6e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'PlayGround-Dennis'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: 'ICS/vmPLCtemplate.json'
+    csmParametersFile: 'ICS/vmPLCparameters.json'
+    overrideParameters: '-adminPassword ${{parameters.vmplcpassword}}'
+    deploymentMode: 'Incremental'
+
+# Deploy VM SCADA
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'SC-PlayGround-Dennis'
+    subscriptionId: 'd08e1fe2-703e-4cb1-8d53-3ba3d0623b6e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'PlayGround-Dennis'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: 'ICS/vmSCADAtemplate.json'
+    csmParametersFile: 'ICS/vmSCADAparameters.json'
+    overrideParameters: '-adminPassword ${{parameters.vmscadapassword}}'
+    deploymentMode: 'Incremental'
+
+# Deploy VM EngWS (Engineering workstation)
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'SC-PlayGround-Dennis'
+    subscriptionId: 'd08e1fe2-703e-4cb1-8d53-3ba3d0623b6e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'PlayGround-Dennis'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: 'ICS/vmEngWStemplate.json'
+    csmParametersFile: 'ICS/vmEngWSparameters.json'
+    overrideParameters: '-adminPassword ${{parameters.vmengpassword}}'
+    deploymentMode: 'Incremental'
